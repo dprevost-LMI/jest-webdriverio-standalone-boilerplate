@@ -16,5 +16,6 @@
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["__tests__", "*.ts"]
+  "include": ["__tests__", "*.ts"],
+  "exclude": [ ".history", "node_modules" ]
 }

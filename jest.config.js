@@ -7,4 +7,5 @@ module.exports = {
   globalSetup: './jest.global.setup.ts',
   globalTeardown: './jest.global.teardown.ts',
   setupFilesAfterEnv: ['./jest.setup.after-env.ts'],
+  testPathIgnorePatterns: ['.history', 'node_modules']
 };
