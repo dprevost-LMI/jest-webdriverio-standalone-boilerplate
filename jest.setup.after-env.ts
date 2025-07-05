@@ -1,6 +1,6 @@
 import { jest, beforeAll, afterAll } from "@jest/globals";
 import { remote } from "webdriverio";
-import { config } from "./wdio.conf";
+import { config } from "./wdio.conf.js";
 
 jest.setTimeout(30000);
 

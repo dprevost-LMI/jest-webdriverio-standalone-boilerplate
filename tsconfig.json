@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     // build
-    "target": "es5",
-    "module": "commonjs",
+    "target": "ES2022",
+    "module": "ESNext",
     "moduleResolution": "Node",
     "skipLibCheck": true,
     "noEmit": true,
