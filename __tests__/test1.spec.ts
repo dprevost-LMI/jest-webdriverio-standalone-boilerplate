@@ -1,35 +1,23 @@
 import { expect } from "expect-webdriverio";
 import { test, describe, expect as jestExpect } from "@jest/globals";
 
-const timestamp = () => `[${new Date().toISOString()}]`;
-
 describe("WebdriverIO Comprehensive Tests", () => {
   test("Browser matchers - toHaveUrl and toHaveTitle", async () => {
-    console.log(`${timestamp()} Starting browser navigation test`);
-    
     // Navigate to WebdriverIO site
-    console.log(`${timestamp()} Navigating to https://webdriver.io`);
     await chrome.url("https://webdriver.io");
     
     // Test toHaveUrl matcher
-    console.log(`${timestamp()} Testing toHaveUrl matcher`);
     await expect(chrome).toHaveUrl("https://webdriver.io/");
     await expect(chrome).toHaveUrl(expect.stringContaining("webdriver"));
     
     // Test toHaveTitle matcher
-    console.log(`${timestamp()} Testing toHaveTitle matcher`);
     await expect(chrome).toHaveTitle(expect.stringContaining("WebdriverIO"));
-    
-    console.log(`${timestamp()} Browser matchers test completed`);
   });
 
   test("Element existence and display matchers", async () => {
-    console.log(`${timestamp()} Starting element existence tests`);
-    
     await chrome.url("https://webdriver.io");
     
     // Test element existence
-    console.log(`${timestamp()} Testing element existence matchers`);
     const heroSection = await chrome.$(".hero");
     await expect(heroSection).toExist();
     await expect(heroSection).toBeDisplayed();
@@ -37,17 +25,13 @@ describe("WebdriverIO Comprehensive Tests", () => {
     // Test non-existent element
     const nonExistent = await chrome.$(".does-not-exist");
     await expect(nonExistent).not.toExist();
-    
-    console.log(`${timestamp()} Element existence tests completed`);
   });
 
   test("Text content matchers", async () => {
-    console.log(`${timestamp()} Starting text content tests`);
     
     await chrome.url("https://webdriver.io");
     
     // Test toHaveText matcher with different options
-    console.log(`${timestamp()} Testing toHaveText matchers`);
     const subtitle = await chrome.$(".hero__subtitle");
     await expect(subtitle).toHaveText(expect.stringContaining("automation"));
     await expect(subtitle).toHaveText(expect.stringContaining("Node.js"));
@@ -55,16 +39,13 @@ describe("WebdriverIO Comprehensive Tests", () => {
     // Test with ignoreCase option
     await expect(subtitle).toHaveText(expect.stringContaining("AUTOMATION"), { ignoreCase: true });
     
-    console.log(`${timestamp()} Text content tests completed`);
   });
 
   test("Attribute matchers", async () => {
-    console.log(`${timestamp()} Starting attribute tests`);
     
     await chrome.url("https://webdriver.io");
     
     // Test toHaveAttribute matcher with a more reliable selector
-    console.log(`${timestamp()} Testing toHaveAttribute matchers`);
     const logoLink = await chrome.$("a[href=\"/\"]");
     await expect(logoLink).toHaveAttribute("href");
     await expect(logoLink).toHaveAttribute("href", "/");
@@ -73,16 +54,13 @@ describe("WebdriverIO Comprehensive Tests", () => {
     const heroTitle = await chrome.$(".hero__title");
     await expect(heroTitle).toHaveElementClass("hero__title");
     
-    console.log(`${timestamp()} Attribute tests completed`);
   });
 
   test("Form interaction and value matchers", async () => {
-    console.log(`${timestamp()} Starting form interaction tests`);
     
     await chrome.url("https://webdriver.io");
     
     // Test search functionality
-    console.log(`${timestamp()} Testing search interaction`);
     const searchButton = await chrome.$(".DocSearch-Button");
     await expect(searchButton).toBeClickable();
     await searchButton.click();
@@ -91,13 +69,11 @@ describe("WebdriverIO Comprehensive Tests", () => {
     await expect(searchInput).toBeDisplayed();
     
     // Test input value
-    console.log(`${timestamp()} Testing input value`);
     await searchInput.setValue("api");
     await expect(searchInput).toHaveValue("api");
     await expect(searchInput).toHaveValue(expect.stringContaining("ap"));
     
     // Test suggestions appear
-    console.log(`${timestamp()} Testing search suggestions`);
     const suggestions = await chrome.$(".DocSearch-Hit");
     await suggestions.waitForExist({ timeout: 3000 });
     await expect(suggestions).toExist();
@@ -105,16 +81,13 @@ describe("WebdriverIO Comprehensive Tests", () => {
     // Close search modal
     await chrome.keys("Escape");
     
-    console.log(`${timestamp()} Form interaction tests completed`);
   });
 
   test("HTML content matchers", async () => {
-    console.log(`${timestamp()} Starting HTML content tests`);
     
     await chrome.url("https://webdriver.io");
     
     // Test toHaveHTML matcher
-    console.log(`${timestamp()} Testing toHaveHTML matchers`);
     const navigation = await chrome.$("nav");
     await expect(navigation).toHaveHTML(expect.stringContaining("nav"));
     
@@ -122,16 +95,13 @@ describe("WebdriverIO Comprehensive Tests", () => {
     const heroSection = await chrome.$(".hero");
     await expect(heroSection).toHaveHTML(expect.stringContaining("hero"));
     
-    console.log(`${timestamp()} HTML content tests completed`);
   });
 
   test("Multiple elements and array matchers", async () => {
-    console.log(`${timestamp()} Starting multiple elements tests`);
     
     await chrome.url("https://webdriver.io");
     
     // Test multiple elements
-    console.log(`${timestamp()} Testing multiple elements`);
     const navigationLinks = await chrome.$$("nav a");
     await expect(navigationLinks).toBeElementsArrayOfSize({ gte: 3 });
     
@@ -143,16 +113,13 @@ describe("WebdriverIO Comprehensive Tests", () => {
       await expect(firstLink).toExist();
     }
     
-    console.log(`${timestamp()} Multiple elements tests completed`);
   });
 
   test("Viewport and size matchers", async () => {
-    console.log(`${timestamp()} Starting viewport and size tests`);
     
     await chrome.url("https://webdriver.io");
     
     // Test element dimensions
-    console.log(`${timestamp()} Testing element dimensions`);
     const heroSection = await chrome.$(".hero");
     
     // Get actual dimensions and verify they're reasonable
@@ -163,16 +130,13 @@ describe("WebdriverIO Comprehensive Tests", () => {
     // Test if element is in viewport
     await expect(heroSection).toBeDisplayedInViewport();
     
-    console.log(`${timestamp()} Viewport and size tests completed`);
   });
 
   test("Focus and interaction state matchers", async () => {
-    console.log(`${timestamp()} Starting focus and interaction tests`);
     
     await chrome.url("https://webdriver.io");
     
     // Test clickable elements - use a more reliable selector
-    console.log(`${timestamp()} Testing clickable elements`);
     const logoLink = await chrome.$("a[href=\"/\"]");
     await expect(logoLink).toBeClickable();
     
@@ -186,16 +150,13 @@ describe("WebdriverIO Comprehensive Tests", () => {
     // Close search
     await chrome.keys("Escape");
     
-    console.log(`${timestamp()} Focus and interaction tests completed`);
   });
 
   test("Negative assertions and edge cases", async () => {
-    console.log(`${timestamp()} Starting negative assertions tests`);
     
     await chrome.url("https://webdriver.io");
     
     // Test negative assertions
-    console.log(`${timestamp()} Testing negative assertions`);
     const nonExistentElement = await chrome.$(".this-class-does-not-exist");
     await expect(nonExistentElement).not.toExist();
     await expect(nonExistentElement).not.toBeDisplayed();
@@ -205,16 +166,13 @@ describe("WebdriverIO Comprehensive Tests", () => {
     await expect(heroTitle).not.toHaveAttribute("data-nonexistent");
     await expect(heroTitle).not.toHaveElementClass("non-existent-class");
     
-    console.log(`${timestamp()} Negative assertions tests completed`);
   });
 
   test("Complex selectors and CSS matchers", async () => {
-    console.log(`${timestamp()} Starting complex selectors tests`);
     
     await chrome.url("https://webdriver.io");
     
     // Test complex CSS selectors
-    console.log(`${timestamp()} Testing complex CSS selectors`);
     const mainContent = await chrome.$("main");
     await expect(mainContent).toExist();
     
@@ -226,16 +184,13 @@ describe("WebdriverIO Comprehensive Tests", () => {
     const heroSection = await chrome.$(".hero");
     await expect(heroSection).toHaveElementClass(expect.stringContaining("hero"));
     
-    console.log(`${timestamp()} Complex selectors tests completed`);
   });
 
   test("RegExp and partial matchers", async () => {
-    console.log(`${timestamp()} Starting RegExp and partial matchers tests`);
     
     await chrome.url("https://webdriver.io");
     
     // Test RegExp matchers
-    console.log(`${timestamp()} Testing RegExp matchers`);
     await expect(chrome).toHaveTitle(/WebdriverIO/i);
     await expect(chrome).toHaveUrl(/webdriver\.io/);
     
@@ -250,16 +205,13 @@ describe("WebdriverIO Comprehensive Tests", () => {
       expect.stringContaining("Node.js"),
     ]);
     
-    console.log(`${timestamp()} RegExp and partial matchers tests completed`);
   });
 
   test("Standard Jest matchers - toEqual and toBe", async () => {
-    console.log(`${timestamp()} Starting standard Jest matchers tests`);
     
     await chrome.url("https://webdriver.io");
     
     // Test using standard Jest matchers with element properties
-    console.log(`${timestamp()} Testing element properties with Jest matchers`);
     const heroSection = await chrome.$(".hero");
     
 
@@ -277,7 +229,6 @@ describe("WebdriverIO Comprehensive Tests", () => {
     expect(exists).toEqual(true);
     
     // Test element dimensions with standard matchers
-    console.log(`${timestamp()} Testing dimensions with standard matchers`);
     const size = await heroSection.getSize();
     expect(size).toEqual(expect.objectContaining({
       width: expect.any(Number),
@@ -294,7 +245,6 @@ describe("WebdriverIO Comprehensive Tests", () => {
     }));
     
     // Test browser properties with standard matchers
-    console.log(`${timestamp()} Testing browser properties with standard matchers`);
     const currentUrl = await chrome.getUrl();
     expect(currentUrl).toEqual("https://webdriver.io/");
     expect(currentUrl).toMatch(/^https:\/\/webdriver\.io/);
@@ -304,7 +254,6 @@ describe("WebdriverIO Comprehensive Tests", () => {
     expect(title.length).toBeGreaterThan(0);
     
     // Test element text content with standard matchers
-    console.log(`${timestamp()} Testing text content with standard matchers`);
     // Use page title instead since h1 might be empty
     const pageTitle = await chrome.getTitle();
     expect(pageTitle).toEqual(expect.stringContaining("WebdriverIO"));
@@ -312,7 +261,6 @@ describe("WebdriverIO Comprehensive Tests", () => {
     expect(pageTitle.length).toBeGreaterThan(0);
     
     // Test element attributes with standard matchers
-    console.log(`${timestamp()} Testing attributes with standard matchers`);
     const logoLink = await chrome.$("a[href=\"/\"]");
     const href = await logoLink.getAttribute("href");
     expect(href).toBe("/");
@@ -327,7 +275,6 @@ describe("WebdriverIO Comprehensive Tests", () => {
     expect(heroDisplay.value).not.toBe("none");
     
     // Test multiple elements count with standard matchers
-    console.log(`${timestamp()} Testing element collections with standard matchers`);
     const navLinks = await chrome.$$("nav a");
     const linkCount = navLinks.length;
     await expect(linkCount).toBeGreaterThanOrEqual(1);
@@ -339,16 +286,13 @@ describe("WebdriverIO Comprehensive Tests", () => {
     expect(tagName.toLowerCase()).toEqual("header");
     expect(tagName).toMatch(/^(header|div|section)$/i);
     
-    console.log(`${timestamp()} Standard Jest matchers tests completed`);
   });
 
   test("Jest matchers with form interactions", async () => {
-    console.log(`${timestamp()} Starting Jest matchers with form interactions`);
     
     await chrome.url("https://webdriver.io");
     
     // Test search button interactions with standard matchers
-    console.log(`${timestamp()} Testing button interactions with Jest matchers`);
     const searchButton = await chrome.$(".DocSearch-Button");
     
     const isClickable = await searchButton.isClickable();
@@ -368,7 +312,6 @@ describe("WebdriverIO Comprehensive Tests", () => {
     expect(inputDisplayed).toBe(true);
     
     // Test input value changes
-    console.log(`${timestamp()} Testing input value changes with Jest matchers`);
     await searchInput.setValue("testing");
     
     const inputValue = await searchInput.getValue();
@@ -386,23 +329,19 @@ describe("WebdriverIO Comprehensive Tests", () => {
     // Close modal
     await chrome.keys("Escape");
     
-    console.log(`${timestamp()} Jest matchers with form interactions completed`);
   });
 
   test("Array and object matchers with WebDriver data", async () => {
-    console.log(`${timestamp()} Starting array and object matchers tests`);
     
     await chrome.url("https://webdriver.io");
     
     // Test window handles as array
-    console.log(`${timestamp()} Testing window handles with array matchers`);
     const windowHandles = await chrome.getWindowHandles();
     expect(windowHandles).toEqual(expect.arrayContaining([expect.any(String)]));
     expect(windowHandles.length).toBe(1);
     expect(Array.isArray(windowHandles)).toBe(true);
     
     // Test window size as object
-    console.log(`${timestamp()} Testing window size with object matchers`);
     const windowSize = await chrome.getWindowSize();
     expect(windowSize).toEqual({
       width: expect.any(Number),
@@ -428,7 +367,6 @@ describe("WebdriverIO Comprehensive Tests", () => {
     });
     
     // Test multiple elements as array
-    console.log(`${timestamp()} Testing multiple elements with array matchers`);
     const allLinks = await chrome.$$("a");
     expect(allLinks).toEqual(expect.any(Array));
     await expect(allLinks.length).toBeGreaterThan(0);
@@ -444,6 +382,5 @@ describe("WebdriverIO Comprehensive Tests", () => {
     expect(linkTexts).toEqual(expect.arrayContaining([expect.any(String)]));
     expect(linkTexts.every((text: any) => typeof text === "string")).toBe(true);
     
-    console.log(`${timestamp()} Array and object matchers tests completed`);
   });
 });

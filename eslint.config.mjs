@@ -2,6 +2,7 @@ import js from '@eslint/js';
 import typescript from '@typescript-eslint/eslint-plugin';
 import typescriptParser from '@typescript-eslint/parser';
 import jest from 'eslint-plugin-jest';
+import * as wdio from 'eslint-plugin-wdio';
 
 export default [
   js.configs.recommended,
@@ -29,6 +30,7 @@ export default [
     plugins: {
       '@typescript-eslint': typescript,
       jest,
+      wdio,
     },
     rules: {
       // TypeScript rules
@@ -61,6 +63,34 @@ export default [
       'jest/no-identical-title': 'error',
       'jest/prefer-to-have-length': 'warn',
       'jest/valid-expect': 'error',
+      
+      // WebdriverIO rules
+      'wdio/await-expect': 'error',
+      'wdio/no-debug': 'error',
+      'wdio/no-pause': 'warn',
+    },
+  },
+  {
+    files: ['**/*.spec.ts', '**/*.test.ts', '__tests__/**/*.ts'],
+    languageOptions: {
+      globals: {
+        chrome: 'readonly',
+        expect: 'readonly',
+        test: 'readonly',
+        describe: 'readonly',
+        beforeAll: 'readonly',
+        afterAll: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly',
+      },
+    },
+    rules: {
+      // Allow any types in tests for flexibility
+      '@typescript-eslint/no-explicit-any': 'off',
+      // Allow non-null assertions in tests
+      '@typescript-eslint/no-non-null-assertion': 'off',
+      // WebdriverIO expect() calls should be awaited
+      'wdio/await-expect': 'error',
     },
   },
   {
