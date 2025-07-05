@@ -19,9 +19,5 @@
     "typescript": "^5.8.3",
     "wdio-wiremock-service": "^6.0.7",
     "webdriverio": "^8.14.3"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.28.0",
-    "@babel/preset-env": "^7.28.0"
   }
 }
