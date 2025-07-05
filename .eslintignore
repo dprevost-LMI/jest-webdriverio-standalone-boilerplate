@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+coverage/
+
+# Generated files
+*.d.ts
+
+# Configuration files (already handled in eslint.config.mjs)
+*.js
+*.mjs
+
+# Test artifacts
+__stubs__/
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

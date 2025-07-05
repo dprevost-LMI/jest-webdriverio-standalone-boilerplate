@@ -1,5 +1,5 @@
 import { expect } from "expect-webdriverio";
-import { test, describe } from "@jest/globals";
+import { test, describe, expect as jestExpect } from "@jest/globals";
 
 const timestamp = () => `[${new Date().toISOString()}]`;
 
@@ -262,9 +262,16 @@ describe("WebdriverIO Comprehensive Tests", () => {
     console.log(`${timestamp()} Testing element properties with Jest matchers`);
     const heroSection = await chrome.$(".hero");
     
+
+    
     // Get element properties and test with standard matchers
     const isDisplayed = await heroSection.isDisplayed();
-    expect(isDisplayed).toBe(true);
+
+    const expectVoid = expect(isDisplayed);
+    await expectVoid;
+
+    expectVoid.toBe(true);
+    jestExpect(isDisplayed).toBe(true);
     
     const exists = await heroSection.isExisting();
     expect(exists).toEqual(true);
@@ -323,7 +330,7 @@ describe("WebdriverIO Comprehensive Tests", () => {
     console.log(`${timestamp()} Testing element collections with standard matchers`);
     const navLinks = await chrome.$$("nav a");
     const linkCount = navLinks.length;
-    expect(linkCount).toBeGreaterThanOrEqual(1);
+    await expect(linkCount).toBeGreaterThanOrEqual(1);
     expect(typeof linkCount).toBe("number");
     expect(Array.isArray(navLinks)).toBe(true);
     
@@ -424,7 +431,7 @@ describe("WebdriverIO Comprehensive Tests", () => {
     console.log(`${timestamp()} Testing multiple elements with array matchers`);
     const allLinks = await chrome.$$("a");
     expect(allLinks).toEqual(expect.any(Array));
-    expect(allLinks.length).toBeGreaterThan(0);
+    await expect(allLinks.length).toBeGreaterThan(0);
     
     // Test element texts as array - test first 3 elements
     const linkTexts = [];

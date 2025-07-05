@@ -7,7 +7,8 @@
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
-    "lint:check": "eslint . --ext .ts,.tsx --max-warnings 0"
+    "lint:check": "eslint . --ext .ts,.tsx --max-warnings 0",
+    "validate": "npm run lint:check && npm test"
   },
   "author": "Erwin Heitzman",
   "license": "MIT",
@@ -15,7 +16,7 @@
     "@jest/globals": "^29.7.0",
     "@types/node-fetch": "^2.6.12",
     "@wdio/globals": "^9.16.2",
-    "expect-webdriverio": "^5.3.4",
+    "expect-webdriverio": "file:.yalc/expect-webdriverio",
     "jest": "^29.7.0",
     "lodash.zip": "^4.2.0",
     "node-fetch": "^3.3.2",

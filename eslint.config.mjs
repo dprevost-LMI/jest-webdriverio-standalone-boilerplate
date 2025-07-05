@@ -6,6 +6,9 @@ import jest from 'eslint-plugin-jest';
 export default [
   js.configs.recommended,
   {
+    ignores: ['.yalc/**', 'node_modules/**', 'dist/**', 'build/**'],
+  },
+  {
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
       parser: typescriptParser,
@@ -34,6 +37,7 @@ export default [
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/no-inferrable-types': 'off',
       '@typescript-eslint/ban-ts-comment': 'warn',
+      '@typescript-eslint/no-floating-promises': 'error',
       
       // General JavaScript/TypeScript rules
       'no-console': 'off', // Allow console.log for test tracing
@@ -57,27 +61,6 @@ export default [
       'jest/no-identical-title': 'error',
       'jest/prefer-to-have-length': 'warn',
       'jest/valid-expect': 'error',
-    },
-  },
-  {
-    files: ['**/*.spec.ts', '**/*.test.ts', '__tests__/**/*.ts'],
-    languageOptions: {
-      globals: {
-        chrome: 'readonly',
-        expect: 'readonly',
-        test: 'readonly',
-        describe: 'readonly',
-        beforeAll: 'readonly',
-        afterAll: 'readonly',
-        beforeEach: 'readonly',
-        afterEach: 'readonly',
-      },
-    },
-    rules: {
-      // Allow any types in tests for flexibility
-      '@typescript-eslint/no-explicit-any': 'off',
-      // Allow non-null assertions in tests
-      '@typescript-eslint/no-non-null-assertion': 'off',
     },
   },
   {
