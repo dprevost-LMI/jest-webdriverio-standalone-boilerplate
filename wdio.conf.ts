@@ -1,6 +1,7 @@
 
 const args = [];
-const headless = !!process.env.HEADLESS;
+// const headless = !!process.env.HEADLESS;
+const headless = true; // For demonstration purposes, set to true
 if (headless) {
   args.push("--headless");
 }
