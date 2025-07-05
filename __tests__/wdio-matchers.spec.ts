@@ -1,7 +1,7 @@
 import { expect } from "expect-webdriverio";
 import { test, describe } from "@jest/globals";
 
-describe.skip("WebdriverIO-specific Matchers", () => {
+describe("WebdriverIO-specific Matchers", () => {
   test("Browser matchers - toHaveUrl and toHaveTitle", async () => {
     // Navigate to WebdriverIO site
     await chrome.url("https://webdriver.io");

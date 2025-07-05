@@ -1,11 +1,11 @@
 import { expect } from "expect-webdriverio";
 import { test, describe } from "@jest/globals";
 
-describe("Standard Jest/Expect Matchers", () => {
-  test("Standard Jest matchers - toEqual and toBe", async () => {
+describe("Standard Expect Matchers", () => {
+  test("Standard expect matchers - toEqual and toBe", async () => {
     await chrome.url("https://webdriver.io");
     
-    // Test using standard Jest matchers with element properties
+    // Test using standard expect matchers with element properties
     const heroSection = await chrome.$(".hero");
     
     // Get element properties and test with standard matchers
@@ -68,7 +68,7 @@ describe("Standard Jest/Expect Matchers", () => {
     expect(tagName).toMatch(/^(header|div|section)$/i);
   });
 
-  test("Jest matchers with form interactions", async () => {
+  test("Expect matchers with form interactions", async () => {
     await chrome.url("https://webdriver.io");
     
     // Test search button interactions with standard matchers
@@ -197,7 +197,7 @@ describe("Standard Jest/Expect Matchers", () => {
     const exists = await heroSection.isExisting();
     const isEnabled = await heroSection.isEnabled();
     
-    // Test with Jest boolean matchers
+    // Test with expect boolean matchers
     expect(isDisplayed).toBe(true);
     expect(exists).toBe(true);
     expect(isEnabled).toBe(true);
