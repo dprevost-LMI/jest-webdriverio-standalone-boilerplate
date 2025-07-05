@@ -13,5 +13,5 @@ export const config = {
     },
   },
   waitforTimeout: 15000,
-  logLevel: 'info' as const,
+  logLevel: 'silent' as const,
 };
