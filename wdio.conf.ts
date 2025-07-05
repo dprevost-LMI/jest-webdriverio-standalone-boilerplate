@@ -1,4 +1,3 @@
-import { RemoteOptions } from "webdriverio";
 
 const args = [];
 const headless = !!process.env.HEADLESS;
@@ -6,7 +5,7 @@ if (headless) {
   args.push("--headless");
 }
 
-export const config: RemoteOptions = {
+export const config = {
   capabilities: {
     browserName: "chrome",
     "goog:chromeOptions": {
@@ -14,5 +13,5 @@ export const config: RemoteOptions = {
     },
   },
   waitforTimeout: 15000,
-  logLevel: "silent",
+  logLevel: 'info' as const,
 };

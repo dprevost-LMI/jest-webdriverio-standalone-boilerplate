@@ -28,7 +28,7 @@ test(`a mocked api response created using WireMock's HTTP API`, async () => {
   });
 
   await chrome.call(async () => {
-    await nodeFetch("http://localhost:8080/__admin/mappings/new", {
+    await nodeFetch("http://localhost:8080/__admin/mappings", {
       method: "POST",
       body,
     });
