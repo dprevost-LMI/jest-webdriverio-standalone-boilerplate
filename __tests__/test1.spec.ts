@@ -65,7 +65,7 @@ describe("WebdriverIO Comprehensive Tests", () => {
     
     // Test toHaveAttribute matcher with a more reliable selector
     console.log(`${timestamp()} Testing toHaveAttribute matchers`);
-    const logoLink = await chrome.$('a[href="/"]');
+    const logoLink = await chrome.$("a[href=\"/\"]");
     await expect(logoLink).toHaveAttribute("href");
     await expect(logoLink).toHaveAttribute("href", "/");
     
@@ -173,7 +173,7 @@ describe("WebdriverIO Comprehensive Tests", () => {
     
     // Test clickable elements - use a more reliable selector
     console.log(`${timestamp()} Testing clickable elements`);
-    const logoLink = await chrome.$('a[href="/"]');
+    const logoLink = await chrome.$("a[href=\"/\"]");
     await expect(logoLink).toBeClickable();
     
     // Test search button focus
@@ -247,7 +247,7 @@ describe("WebdriverIO Comprehensive Tests", () => {
     // Test array of partial matchers
     await expect(subtitle).toHaveText([
       expect.stringContaining("automation"),
-      expect.stringContaining("Node.js")
+      expect.stringContaining("Node.js"),
     ]);
     
     console.log(`${timestamp()} RegExp and partial matchers tests completed`);
@@ -274,7 +274,7 @@ describe("WebdriverIO Comprehensive Tests", () => {
     const size = await heroSection.getSize();
     expect(size).toEqual(expect.objectContaining({
       width: expect.any(Number),
-      height: expect.any(Number)
+      height: expect.any(Number),
     }));
     expect(size.width).toBeGreaterThan(0);
     expect(size.height).toBeGreaterThan(0);
@@ -283,7 +283,7 @@ describe("WebdriverIO Comprehensive Tests", () => {
     const location = await heroSection.getLocation();
     expect(location).toEqual(expect.objectContaining({
       x: expect.any(Number),
-      y: expect.any(Number)
+      y: expect.any(Number),
     }));
     
     // Test browser properties with standard matchers
@@ -306,7 +306,7 @@ describe("WebdriverIO Comprehensive Tests", () => {
     
     // Test element attributes with standard matchers
     console.log(`${timestamp()} Testing attributes with standard matchers`);
-    const logoLink = await chrome.$('a[href="/"]');
+    const logoLink = await chrome.$("a[href=\"/\"]");
     const href = await logoLink.getAttribute("href");
     expect(href).toBe("/");
     expect(href).toEqual("/");
@@ -315,7 +315,7 @@ describe("WebdriverIO Comprehensive Tests", () => {
     const heroDisplay = await heroSection.getCSSProperty("display");
     expect(heroDisplay).toEqual(expect.objectContaining({
       property: "display",
-      value: expect.any(String)
+      value: expect.any(String),
     }));
     expect(heroDisplay.value).not.toBe("none");
     
@@ -399,10 +399,10 @@ describe("WebdriverIO Comprehensive Tests", () => {
     const windowSize = await chrome.getWindowSize();
     expect(windowSize).toEqual({
       width: expect.any(Number),
-      height: expect.any(Number)
+      height: expect.any(Number),
     });
     expect(windowSize).toEqual(expect.objectContaining({
-      width: expect.any(Number)
+      width: expect.any(Number),
     }));
     
     // Test element location and size as objects
@@ -412,12 +412,12 @@ describe("WebdriverIO Comprehensive Tests", () => {
     
     expect(location).toEqual({
       x: expect.any(Number),
-      y: expect.any(Number)
+      y: expect.any(Number),
     });
     
     expect(size).toEqual({
       width: expect.any(Number),
-      height: expect.any(Number)
+      height: expect.any(Number),
     });
     
     // Test multiple elements as array

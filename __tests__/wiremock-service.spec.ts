@@ -2,12 +2,12 @@ import { test } from "@jest/globals";
 import { expect } from "expect-webdriverio";
 import nodeFetch, { Response } from "node-fetch";
 
-test(`a mocked api response created using WireMock's fixtures`, async () => {
+test("a mocked api response created using WireMock's fixtures", async () => {
   await chrome.url("http://localhost:8080/dummy_data");
   await expect(chrome.$("body")).toHaveText("this is a fixture, and it works!");
 });
 
-test(`a mocked api response created using WireMock's HTTP API`, async () => {
+test("a mocked api response created using WireMock's HTTP API", async () => {
   const expectedRes = {
     dummy: [
       {
