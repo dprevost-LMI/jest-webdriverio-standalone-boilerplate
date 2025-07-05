@@ -1,6 +1,3 @@
-import { expect } from "expect-webdriverio";
-import { test, describe } from "@jest/globals";
-
 describe("Standard Expect Matchers", () => {
   test("Standard expect matchers - toEqual and toBe", async () => {
     await chrome.url("https://webdriver.io");
@@ -96,14 +93,14 @@ describe("Standard Expect Matchers", () => {
     const inputValue = await searchInput.getValue();
     expect(inputValue).toEqual("testing");
     expect(inputValue).toBe("testing");
-    expect(inputValue.length).toEqual(7);
+    expect(inputValue).toHaveLength(7);
     
     // Clear and test empty value
     await searchInput.clearValue();
     const clearedValue = await searchInput.getValue();
     expect(clearedValue).toBe("");
     expect(clearedValue).toEqual("");
-    expect(clearedValue.length).toEqual(0);
+    expect(clearedValue).toHaveLength(0);
     
     // Close modal
     await chrome.keys("Escape");
@@ -115,7 +112,7 @@ describe("Standard Expect Matchers", () => {
     // Test window handles as array
     const windowHandles = await chrome.getWindowHandles();
     expect(windowHandles).toEqual(expect.arrayContaining([expect.any(String)]));
-    expect(windowHandles.length).toBe(1);
+    expect(windowHandles).toHaveLength(1);
     expect(Array.isArray(windowHandles)).toBe(true);
     
     // Test window size as object
