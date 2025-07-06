@@ -13,5 +13,5 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  await globalThis.chrome.deleteSession();
+  await globalThis.chrome?.deleteSession();
 });

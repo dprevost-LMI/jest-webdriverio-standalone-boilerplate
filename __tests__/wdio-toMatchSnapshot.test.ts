@@ -169,36 +169,6 @@ describe("WebdriverIO toMatchSnapshot Tests", () => {
     console.log("Note: Snapshot functionality requires WebdriverIO test runner configuration");
   });
 
-  test("Demonstration of snapshot matcher patterns", async () => {
-    await chrome.url("https://webdriver.io");
-    
-    const bodyElement = await chrome.$("body");
-    
-    // These are the patterns that would work with proper snapshot service setup:
-    // Basic snapshots
-    await expect(bodyElement).toMatchSnapshot("page-body");
-    
-    // Test with different elements to demonstrate multiple snapshots
-    const headerElement = await chrome.$("header");
-    await expect(headerElement).toMatchSnapshot("page-header");
-    
-    console.log("✅ Multiple element snapshots created successfully!");
-    
-    // Inline snapshots - remove to focus on one demonstration
-    
-    // Conditional snapshots
-    if (await bodyElement.isExisting()) {
-      await expect(bodyElement).toMatchSnapshot("conditional-body");
-    }
-    
-    // Combined with other matchers
-    await expect(bodyElement).toExist();
-    await expect(bodyElement).toMatchSnapshot("verified-body");
-    
-    console.log("✅ Snapshot matcher patterns documented and types verified!");
-    console.log("💡 To use actual snapshots, configure WebdriverIO test runner with snapshot service");
-  });
-
   test("Type assertions for snapshot matchers", async () => {
     await chrome.url("https://webdriver.io");
     

@@ -4,6 +4,7 @@ export default {
     '^(\\.{1,2}/.*)\\.[jt]s$': '$1',
   },
   testEnvironment: 'node',
+  maxWorkers: 1,
   globalSetup: './jest.global.setup.ts',
   globalTeardown: './jest.global.teardown.ts',
   setupFilesAfterEnv: ['./jest.setup.after-env.ts'],
