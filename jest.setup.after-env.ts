@@ -6,7 +6,8 @@ import { matchers } from "expect-webdriverio";
 jest.setTimeout(30000);
 
 beforeAll(async () => { 
-  expect.extend(matchers);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  expect.extend(matchers as Record<string, any>);
   
   globalThis.chrome = await remote(config);
 });
