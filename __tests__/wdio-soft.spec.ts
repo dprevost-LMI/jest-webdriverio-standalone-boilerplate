@@ -7,6 +7,34 @@
  * at the end.
  */
 
+import { SoftAssertService } from "expect-webdriverio";
+// @ts-ignore
+import * as createSoftExpect from "expect-webdriverio/lib/softExpect";
+
+console.log("creating soft expect...", createSoftExpect);
+
+beforeAll(async () => {
+  Object.defineProperty(expect, "soft", {
+    value: <T = unknown>(actual: T) => createSoftExpect.default(actual),
+  });
+
+  // Add soft assertions utility methods
+  Object.defineProperty(expect, "getSoftFailures", {
+    value: (testId?: string) => SoftAssertService.getInstance().getFailures(testId),
+  });
+
+  Object.defineProperty(expect, "assertSoftFailures", {
+    value: (testId?: string) => SoftAssertService.getInstance().assertNoFailures(testId),
+  });
+
+  Object.defineProperty(expect, "clearSoftFailures", {
+    value: (testId?: string) => SoftAssertService.getInstance().clearFailures(testId),
+  });
+
+
+});
+
+
 describe("WebdriverIO Soft Assertions", () => {
   
   beforeEach(async () => {
@@ -296,4 +324,5 @@ describe("WebdriverIO Soft Assertions", () => {
     console.log("✅ Comprehensive soft assertion test completed");
     console.log("📋 All assertion results will be reported together at the end");
   });
+
 });
