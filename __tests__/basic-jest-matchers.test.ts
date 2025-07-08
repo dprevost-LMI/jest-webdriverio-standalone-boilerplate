@@ -1,3 +1,6 @@
+import { expect } from "@jest/globals";
+import { test, describe } from "@jest/globals";
+
 describe("Basic Jest Matchers", () => {
   test("Jest equality matchers", async () => {
     await chrome.url("https://webdriver.io");

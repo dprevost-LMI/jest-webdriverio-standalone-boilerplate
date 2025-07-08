@@ -1,3 +1,6 @@
+import { expect } from "expect-webdriverio";
+import { test, describe } from "@jest/globals";
+
 describe("WebdriverIO-specific Matchers", () => {
   test("Browser matchers - toHaveUrl and toHaveTitle", async () => {
     // Navigate to WebdriverIO site

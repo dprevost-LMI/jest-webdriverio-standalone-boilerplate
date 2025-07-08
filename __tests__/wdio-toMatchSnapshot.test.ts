@@ -29,6 +29,8 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { SnapshotService } from "expect-webdriverio";
+import { expect } from "expect-webdriverio";
+import { test, describe, beforeAll, beforeEach, afterEach } from "@jest/globals";
 
 // Get current file info for snapshot context
 const __filename = fileURLToPath(import.meta.url);
@@ -105,7 +107,7 @@ describe("WebdriverIO toMatchSnapshot Tests", () => {
     
     // Test CSS property snapshots - these should have correct types and functionality
     const colorProperty = heroTitle.getCSSProperty("color");
-    expect(colorProperty).toBeDefined();  
+    await expect(colorProperty).toBeDefined();  
   });
 
   test("Element existence and snapshot type compatibility", async () => {

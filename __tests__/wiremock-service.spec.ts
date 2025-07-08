@@ -1,3 +1,5 @@
+import { test } from "@jest/globals";
+import { expect } from "expect-webdriverio";
 import nodeFetch, { Response } from "node-fetch";
 
 test("a mocked api response created using WireMock's fixtures", async () => {

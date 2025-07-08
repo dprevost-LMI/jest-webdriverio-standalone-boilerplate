@@ -13,6 +13,7 @@
   "author": "Erwin Heitzman",
   "license": "MIT",
   "dependencies": {
+    "@jest/globals": "^29.7.0",
     "@types/node-fetch": "^2.6.12",
     "@wdio/globals": "^9.16.2",
     "expect-webdriverio": "file:.yalc/expect-webdriverio",
@@ -28,8 +29,6 @@
     "expect-webdriverio": "file:.yalc/expect-webdriverio"
   },
   "devDependencies": {
-    "@jest/globals": "^29.7.0",
-    "@types/jest": "^29.0.0",
     "@typescript-eslint/eslint-plugin": "^8.35.1",
     "@typescript-eslint/parser": "^8.35.1",
     "eslint": "^9.30.1",

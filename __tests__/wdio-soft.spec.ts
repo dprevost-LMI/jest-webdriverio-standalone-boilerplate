@@ -6,32 +6,8 @@
  * even when assertions fail, collecting all failures and reporting them
  * at the end.
  */
-
-import { SoftAssertService } from "expect-webdriverio";
-// @ts-ignore
-import * as createSoftExpect from "expect-webdriverio/lib/softExpect";
-
-beforeAll(async () => {
-  Object.defineProperty(expect, "soft", {
-    value: <T = unknown>(actual: T) => createSoftExpect.default(actual),
-  });
-
-  // Add soft assertions utility methods
-  Object.defineProperty(expect, "getSoftFailures", {
-    value: (testId?: string) => SoftAssertService.getInstance().getFailures(testId),
-  });
-
-  Object.defineProperty(expect, "assertSoftFailures", {
-    value: (testId?: string) => SoftAssertService.getInstance().assertNoFailures(testId),
-  });
-
-  Object.defineProperty(expect, "clearSoftFailures", {
-    value: (testId?: string) => SoftAssertService.getInstance().clearFailures(testId),
-  });
-
-
-});
-
+import { expect } from "expect-webdriverio";
+import { test, describe, beforeEach, afterEach } from "@jest/globals";
 
 describe("WebdriverIO Soft Assertions", () => {
   

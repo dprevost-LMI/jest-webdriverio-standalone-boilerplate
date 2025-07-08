@@ -14,9 +14,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "forceConsistentCasingInFileNames": true,
-    // types
-    "types": ["jest", "node", "expect-webdriverio/jest"]
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["__tests__", "*.ts"],
   "exclude": [ ".history", "node_modules" ]
