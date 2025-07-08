@@ -73,10 +73,7 @@ describe("WebdriverIO toMatchSnapshot Tests", () => {
     
     // Test with a different element to show multiple snapshots work
     const pageTitle = await chrome.$("h1");
-    await expect(pageTitle).toMatchSnapshot("page-title-snapshot");
-    
-    console.log("✅ Snapshot matcher types are properly integrated!");
-    console.log("📸 Multiple snapshots created successfully!");
+    await expect(pageTitle).toMatchSnapshot("page-title-snapshot");    
   });
 
   test("Chainable element snapshot types", async () => {
@@ -97,9 +94,7 @@ describe("WebdriverIO toMatchSnapshot Tests", () => {
     const footerElement = hasFooter ? 
       await chrome.$("footer, .footer, [class*='footer']") : 
       await chrome.$("body");
-    await expect(footerElement).toMatchSnapshot("footer-or-body-snapshot");
-    
-    console.log("✅ Chainable element snapshot types work!");
+    await expect(footerElement).toMatchSnapshot("footer-or-body-snapshot");    
   });
 
   test("CSS property snapshot types", async () => {
@@ -110,11 +105,7 @@ describe("WebdriverIO toMatchSnapshot Tests", () => {
     
     // Test CSS property snapshots - these should have correct types and functionality
     const colorProperty = heroTitle.getCSSProperty("color");
-    expect(colorProperty).toBeDefined();
-    
-    // With the proper snapshot service setup, these should work
-    
-    console.log("✅ CSS property snapshot types work!");
+    expect(colorProperty).toBeDefined();  
   });
 
   test("Element existence and snapshot type compatibility", async () => {
@@ -140,8 +131,6 @@ describe("WebdriverIO toMatchSnapshot Tests", () => {
       const chainableFirstLink = chrome.$("nav a");
       await expect(chainableFirstLink).toMatchSnapshot("chainable-first-link");
     }
-    
-    console.log("✅ Multiple element snapshot types work!");
   });
 
   test("Jest matcher integration verification", async () => {
@@ -162,11 +151,6 @@ describe("WebdriverIO toMatchSnapshot Tests", () => {
     const elementText = await heroSection.getText();
     expect(elementText.length).toBeGreaterThan(0); // Jest matcher
     expect(typeof elementText).toBe("string"); // Jest matcher
-    
-    // This shows that snapshot matchers would integrate the same way
-    // as other WebdriverIO matchers when properly configured
-    console.log("✅ Jest + WebdriverIO matcher integration verified!");
-    console.log("Note: Snapshot functionality requires WebdriverIO test runner configuration");
   });
 
   test("Type assertions for snapshot matchers", async () => {
@@ -192,21 +176,6 @@ describe("WebdriverIO toMatchSnapshot Tests", () => {
     // Use different chainable element for negative testing
     const chainableNav = chrome.$("nav");
     await expect(chainableNav).toMatchSnapshot("chainable-nav");
-    // Skip negative assertion to avoid snapshot mismatch
-    
-    console.log("✅ Type assertions for snapshot matchers passed!");
-  });
-
-  test("Inline snapshot type assertions", async () => {
-    await chrome.url("https://webdriver.io");
-    
-    console.log("✅ Inline snapshot type assertions passed!");
-  });
-
-  test("CSS property snapshot integration", async () => {
-    await chrome.url("https://webdriver.io");
-    
-    console.log("✅ CSS property snapshot integration passed!");
   });
 
   test("Negative assertions and edge cases", async () => {
@@ -238,7 +207,5 @@ describe("WebdriverIO toMatchSnapshot Tests", () => {
     
     await expect(chainableElement).toMatchSnapshot("chainable-snapshot-1");
     await expect(chainableElement).toMatchSnapshot("chainable-snapshot-2");
-    
-    console.log("✅ Negative assertions and edge cases passed!");
   });
 });

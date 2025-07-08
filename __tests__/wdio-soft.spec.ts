@@ -11,8 +11,6 @@ import { SoftAssertService } from "expect-webdriverio";
 // @ts-ignore
 import * as createSoftExpect from "expect-webdriverio/lib/softExpect";
 
-console.log("creating soft expect...", createSoftExpect);
-
 beforeAll(async () => {
   Object.defineProperty(expect, "soft", {
     value: <T = unknown>(actual: T) => createSoftExpect.default(actual),
@@ -60,8 +58,6 @@ describe("WebdriverIO Soft Assertions", () => {
     await expect.soft(heroSection).toExist();
     await expect.soft(navigation).toExist();
     
-    console.log("✅ Basic soft assertions completed - test continues even if assertions fail");
-    
     // Assert all soft failures collected during this test
     expect.assertSoftFailures();
   });
@@ -77,8 +73,6 @@ describe("WebdriverIO Soft Assertions", () => {
     // Test negative soft assertions
     await expect.soft(chrome).not.toHaveUrl("https://example.com");
     await expect.soft(chrome).not.toHaveTitle("Wrong Title");
-    
-    console.log("✅ Browser property soft assertions completed");
   });
 
   test("Soft assertions with element text and attributes", async () => {
@@ -88,8 +82,6 @@ describe("WebdriverIO Soft Assertions", () => {
     const heroDescription = await chrome.$(".hero p, .subtitle, [class*='hero'] p");
     
     // Soft assertions on element text - using elements that actually have text
-    console.log("heroDescription text:", await heroDescription.getText());
-    
     // Test with the description that we know contains text
     await expect.soft(heroDescription).toHaveText(expect.stringContaining("automation"));
     await expect.soft(heroDescription).toHaveText(expect.any(String));
@@ -109,8 +101,6 @@ describe("WebdriverIO Soft Assertions", () => {
       await expect.soft(firstLink).toHaveAttribute("href", expect.any(String));
       await expect.soft(firstLink).not.toHaveAttribute("href", "");
     }
-    
-    console.log("✅ Element text and attribute soft assertions completed");
   });
 
   test("Soft assertions with element arrays", async () => {
@@ -129,8 +119,6 @@ describe("WebdriverIO Soft Assertions", () => {
       await expect.soft(firstLink).toBeDisplayed();
       await expect.soft(firstLink).toBeClickable();
     }
-    
-    console.log("✅ Element array soft assertions completed");
   });
 
   test("Soft assertions with form interactions", async () => {
@@ -158,8 +146,6 @@ describe("WebdriverIO Soft Assertions", () => {
       // Close modal
       await chrome.keys("Escape");
     }
-    
-    console.log("✅ Form interaction soft assertions completed");
   });
 
   test("Soft assertions with CSS properties", async () => {
@@ -181,8 +167,6 @@ describe("WebdriverIO Soft Assertions", () => {
     expect(heroSize.height).toBeGreaterThan(50);
     expect(heroLocation.x).toBeGreaterThanOrEqual(0);
     expect(heroLocation.y).toBeGreaterThanOrEqual(0);
-    
-    console.log("✅ CSS property soft assertions completed");
   });
 
   test("Soft assertions with asymmetric matchers", async () => {
@@ -214,8 +198,6 @@ describe("WebdriverIO Soft Assertions", () => {
       width: expect.any(Number),
       height: expect.any(Number),
     }));
-    
-    console.log("✅ Asymmetric matcher soft assertions completed");
   });
 
   test("Chainable element soft assertions", async () => {
@@ -234,8 +216,6 @@ describe("WebdriverIO Soft Assertions", () => {
     await expect.soft(chainableHero).toExist();
     await expect.soft(chainableNav).toExist();
     await expect.soft(chainableHero).not.toHaveText("");
-    
-    console.log("✅ Chainable element soft assertions completed");
   });
 
   test("Mixed soft and regular assertions", async () => {
@@ -257,8 +237,6 @@ describe("WebdriverIO Soft Assertions", () => {
     // More soft assertions
     await expect.soft(chrome).toHaveTitle(expect.any(String));
     await expect.soft(chrome).not.toHaveTitle("");
-    
-    console.log("✅ Mixed soft and regular assertions completed");
   });
 
   test("Soft assertion failure collection demo", async () => {
@@ -275,17 +253,9 @@ describe("WebdriverIO Soft Assertions", () => {
     await expect.soft(chrome).toHaveUrl(expect.stringContaining("webdriver")); // Should pass
     await expect.soft(chrome).toHaveTitle(expect.stringContaining("WebdriverIO")); // Should pass
     
-    // Check soft failure count (should be 0)
-    const softFailures = expect.getSoftFailures();
-    console.log(`Number of soft failures collected: ${softFailures.length}`);
-    
     // More passing assertions
     await expect.soft(heroSection).not.toHaveText(""); // Should pass
     await expect.soft(chrome).toHaveUrl("https://webdriver.io/"); // Should pass
-    
-    console.log("✅ Soft assertion failure collection demo completed");
-    console.log("💡 This test shows soft assertion usage without failures");
-    console.log("🔍 In a real scenario, soft failures would be collected and reported at the end");
   });
 
   test("Demonstrating soft assertion benefits", async () => {
@@ -320,9 +290,6 @@ describe("WebdriverIO Soft Assertions", () => {
     // Browser level assertions
     await expect.soft(chrome).toHaveUrl("https://webdriver.io/");
     await expect.soft(chrome).toHaveTitle(expect.stringContaining("WebdriverIO"));
-    
-    console.log("✅ Comprehensive soft assertion test completed");
-    console.log("📋 All assertion results will be reported together at the end");
   });
 
 });

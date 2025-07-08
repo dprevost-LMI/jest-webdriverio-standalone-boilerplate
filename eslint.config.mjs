@@ -42,7 +42,6 @@ export default [
       '@typescript-eslint/no-floating-promises': 'error',
       
       // General JavaScript/TypeScript rules
-      'no-console': 'off', // Allow console.log for test tracing
       'no-unused-vars': 'off', // Use TypeScript version instead
       'prefer-const': 'error',
       'no-var': 'error',
